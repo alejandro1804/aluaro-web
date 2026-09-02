@@ -1,0 +1,284 @@
+---
+import Base from '../layouts/Base.astro';
+import LlamadaAccion from '../components/LlamadaAccion.astro';
+
+const servicios = [
+  {
+    titulo: 'Destapaciones',
+    desc: 'Desobstrucción de cañerías, desagües y bajadas con equipo especializado.',
+  },
+  {
+    titulo: 'Reparación de pérdidas',
+    desc: 'Detección y arreglo de filtraciones y roturas en instalaciones de agua.',
+  },
+  {
+    titulo: 'Instalaciones sanitarias',
+    desc: 'Cañerías, griferías, sanitarios y reformas de baños y cocinas.',
+  },
+  {
+    titulo: 'Mantenimiento preventivo',
+    desc: 'Planes periódicos para edificios y comercios que evitan urgencias.',
+  },
+];
+
+const diferenciales = [
+  {
+    titulo: 'Respuesta rápida',
+    desc: 'Coordinamos la visita a la brevedad, especialmente en urgencias con agua.',
+  },
+  {
+    titulo: 'Trabajo garantizado',
+    desc: 'Cada intervención queda documentada y con garantía sobre lo realizado.',
+  },
+  {
+    titulo: 'Presupuesto claro',
+    desc: 'Cotización detallada antes de empezar. Sin sorpresas al final.',
+  },
+];
+---
+
+<Base
+  titulo="Inicio"
+  descripcion="Aluaro: mantenimiento hidráulico y sanitario en Uruguay. Destapaciones, reparación de pérdidas e instalaciones para edificios, comercios y hogares."
+>
+  <!-- HERO -->
+  <section class="hero">
+    <div class="contenedor hero__interior">
+      <div class="hero__texto">
+        <p class="hero__kicker">Mantenimiento hidráulico · Uruguay</p>
+        <h1>Cuando el agua es el problema, nosotros somos la solución.</h1>
+        <p class="hero__bajada">
+          Servicio de sanitaria y mantenimiento hidráulico para edificios,
+          comercios y hogares. Destapaciones, pérdidas, instalaciones y planes
+          preventivos, con respuesta rápida en Montevideo y área metropolitana.
+        </p>
+        <div class="hero__acciones">
+          <a href="https://wa.me/59800000000" class="boton boton--primario" rel="noopener">
+            Pedir presupuesto
+          </a>
+          <a href="/servicios/" class="boton boton--solido">Ver servicios</a>
+        </div>
+      </div>
+
+      <div class="hero__panel" aria-hidden="true">
+        <div class="hero__gota">
+          <svg viewBox="0 0 120 160" xmlns="http://www.w3.org/2000/svg" role="img">
+            <path
+              d="M60 8C60 8 16 66 16 104a44 44 0 0 0 88 0C104 66 60 8 60 8Z"
+              fill="none"
+              stroke="rgba(255,255,255,0.55)"
+              stroke-width="2.5"
+            />
+            <path
+              d="M60 40C60 40 34 78 34 104a26 26 0 0 0 52 0C86 78 60 40 60 40Z"
+              fill="rgba(59,154,196,0.35)"
+            />
+          </svg>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICIOS DESTACADOS -->
+  <section class="seccion">
+    <div class="contenedor">
+      <div class="encabezado-seccion">
+        <h2>Lo que resolvemos</h2>
+        <p class="intro">
+          Cubrimos las necesidades hidráulicas más frecuentes, desde una urgencia
+          puntual hasta el mantenimiento continuo de un edificio.
+        </p>
+      </div>
+
+      <div class="grilla-servicios">
+        {
+          servicios.map((s) => (
+            <article class="tarjeta-servicio">
+              <h3>{s.titulo}</h3>
+              <p>{s.desc}</p>
+            </article>
+          ))
+        }
+      </div>
+
+      <p class="mas-servicios">
+        <a href="/servicios/">Ver todos los servicios →</a>
+      </p>
+    </div>
+  </section>
+
+  <!-- SECTORES -->
+  <section class="seccion seccion--claro">
+    <div class="contenedor">
+      <div class="encabezado-seccion">
+        <h2>Para quién trabajamos</h2>
+        <p class="intro">
+          Adaptamos el servicio según el tipo de instalación y sus exigencias.
+        </p>
+      </div>
+      <div class="grilla-sectores">
+        <a href="/sectores/" class="sector">
+          <span class="sector__num">01</span>
+          <h3>Edificios y condominios</h3>
+          <p>Mantenimiento de instalaciones comunes, columnas y coordinación con administraciones.</p>
+        </a>
+        <a href="/sectores/" class="sector">
+          <span class="sector__num">02</span>
+          <h3>Comercios y empresas</h3>
+          <p>Respuesta ágil para no interrumpir la actividad, con planes preventivos.</p>
+        </a>
+        <a href="/sectores/" class="sector">
+          <span class="sector__num">03</span>
+          <h3>Residencial</h3>
+          <p>Soluciones para casas y apartamentos, de la urgencia a la reforma.</p>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- DIFERENCIALES -->
+  <section class="seccion">
+    <div class="contenedor">
+      <div class="encabezado-seccion centro">
+        <h2>Por qué elegirnos</h2>
+      </div>
+      <div class="grilla-dif">
+        {
+          diferenciales.map((d) => (
+            <div class="dif">
+              <h3>{d.titulo}</h3>
+              <p>{d.desc}</p>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <LlamadaAccion />
+</Base>
+
+<style>
+  /* HERO */
+  .hero {
+    background: linear-gradient(155deg, var(--tinta) 0%, #0d3355 55%, var(--azul) 100%);
+    color: var(--blanco);
+    overflow: hidden;
+  }
+  .hero__interior {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    align-items: center;
+    gap: 2rem;
+    padding: 4.5rem 1.25rem 5rem;
+  }
+  .hero__kicker {
+    color: var(--agua);
+    font-weight: 600;
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+  }
+  .hero h1 { color: var(--blanco); max-width: 15ch; }
+  .hero__bajada {
+    color: #cfe0ec;
+    font-size: 1.12rem;
+    max-width: 52ch;
+    margin: 1.25rem 0 2rem;
+  }
+  .hero__acciones {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+  .hero__panel {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .hero__gota {
+    width: 190px;
+    max-width: 60%;
+  }
+
+  /* SERVICIOS */
+  .grilla-servicios {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.25rem;
+  }
+  .tarjeta-servicio {
+    background: var(--blanco);
+    border: 1px solid var(--linea);
+    border-top: 3px solid var(--agua);
+    border-radius: var(--radio);
+    padding: 1.5rem 1.35rem;
+    transition: border-color 0.15s ease, box-shadow 0.15s ease;
+  }
+  .tarjeta-servicio:hover {
+    box-shadow: var(--sombra);
+    border-top-color: var(--azul);
+  }
+  .tarjeta-servicio h3 { color: var(--azul); }
+  .tarjeta-servicio p { color: var(--gris); font-size: 0.95rem; margin: 0; }
+
+  .mas-servicios {
+    margin-top: 2rem;
+  }
+  .mas-servicios a { font-weight: 600; }
+
+  /* SECTORES */
+  .grilla-sectores {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+  .sector {
+    display: block;
+    background: var(--blanco);
+    border: 1px solid var(--linea);
+    border-radius: var(--radio);
+    padding: 1.75rem 1.5rem;
+    text-decoration: none;
+    color: var(--texto);
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+  }
+  .sector:hover {
+    text-decoration: none;
+    box-shadow: var(--sombra);
+    transform: translateY(-3px);
+  }
+  .sector__num {
+    font-family: var(--fuente-titulo);
+    font-weight: 700;
+    color: var(--agua);
+    font-size: 1.1rem;
+  }
+  .sector h3 { margin-top: 0.5rem; }
+  .sector p { color: var(--gris); font-size: 0.95rem; margin: 0; }
+
+  /* DIFERENCIALES */
+  .grilla-dif {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+  }
+  .dif { padding: 0.5rem; }
+  .dif h3 { color: var(--tinta); }
+  .dif p { color: var(--gris); margin: 0; }
+
+  /* Responsive */
+  @media (max-width: 920px) {
+    .grilla-servicios { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 860px) {
+    .hero__interior { grid-template-columns: 1fr; }
+    .hero__panel { display: none; }
+  }
+  @media (max-width: 760px) {
+    .grilla-sectores { grid-template-columns: 1fr; }
+    .grilla-dif { grid-template-columns: 1fr; gap: 1.25rem; }
+  }
+  @media (max-width: 520px) {
+    .grilla-servicios { grid-template-columns: 1fr; }
+  }
+</style>

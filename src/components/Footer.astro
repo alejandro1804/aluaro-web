@@ -1,0 +1,133 @@
+---
+const anio = new Date().getFullYear();
+---
+
+<footer class="pie">
+  <div class="contenedor pie__grid">
+    <div class="pie__col pie__col--marca">
+      <span class="pie__logo">Aluaro</span>
+      <p class="pie__desc">
+        Mantenimiento hidráulico y sanitario para edificios, comercios y hogares
+        en Uruguay. Respuesta rápida y trabajo garantizado.
+      </p>
+    </div>
+
+    <div class="pie__col">
+      <h3 class="pie__titulo">Navegación</h3>
+      <ul class="pie__lista">
+        <li><a href="/">Inicio</a></li>
+        <li><a href="/servicios/">Servicios</a></li>
+        <li><a href="/sectores/">Sectores</a></li>
+        <li><a href="/nosotros/">Nosotros</a></li>
+        <li><a href="/contacto/">Contacto</a></li>
+      </ul>
+    </div>
+
+    <div class="pie__col">
+      <h3 class="pie__titulo">Contacto</h3>
+      <ul class="pie__lista pie__lista--contacto">
+        <li>
+          <span class="pie__etq">Teléfono</span>
+          <a href="tel:+59800000000">+598 0000 0000</a>
+        </li>
+        <li>
+          <span class="pie__etq">WhatsApp</span>
+          <a href="https://wa.me/59800000000" rel="noopener">+598 0000 0000</a>
+        </li>
+        <li>
+          <span class="pie__etq">Email</span>
+          <a href="mailto:contacto@aluaro.com.uy">contacto@aluaro.com.uy</a>
+        </li>
+        <li>
+          <span class="pie__etq">Zona</span>
+          <span>Montevideo y área metropolitana</span>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="pie__base">
+    <div class="contenedor pie__base-interior">
+      <span>© {anio} Aluaro. Todos los derechos reservados.</span>
+      <span class="pie__url">www.aluaro.com.uy</span>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .pie {
+    background: var(--tinta);
+    color: #a9c4d8;
+  }
+  .pie__grid {
+    display: grid;
+    grid-template-columns: 1.6fr 1fr 1.2fr;
+    gap: 2.5rem;
+    padding: 3.5rem 1.25rem 2.5rem;
+  }
+  .pie__logo {
+    font-family: var(--fuente-titulo);
+    font-weight: 700;
+    font-size: 1.4rem;
+    color: var(--blanco);
+    display: block;
+    margin-bottom: 0.75rem;
+  }
+  .pie__desc {
+    font-size: 0.95rem;
+    color: #8fb0c7;
+    max-width: 38ch;
+  }
+  .pie__titulo {
+    font-size: 0.9rem;
+    color: var(--blanco);
+    margin-bottom: 1rem;
+    font-weight: 600;
+  }
+  .pie__lista {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+  .pie__lista a {
+    color: #a9c4d8;
+    font-size: 0.95rem;
+  }
+  .pie__lista a:hover { color: var(--blanco); }
+  .pie__lista--contacto li {
+    display: flex;
+    flex-direction: column;
+    gap: 0.1rem;
+  }
+  .pie__etq {
+    font-size: 0.75rem;
+    color: #6f92aa;
+    text-transform: none;
+  }
+  .pie__base {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  .pie__base-interior {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.25rem;
+    font-size: 0.85rem;
+    color: #7fa0b8;
+  }
+
+  @media (max-width: 760px) {
+    .pie__grid {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+    .pie__base-interior {
+      flex-direction: column;
+      gap: 0.5rem;
+      text-align: center;
+    }
+  }
+</style>

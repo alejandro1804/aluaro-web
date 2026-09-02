@@ -1,0 +1,43 @@
+---
+interface Props {
+  titulo?: string;
+  texto?: string;
+}
+const {
+  titulo = '¿Necesitás una solución hidráulica?',
+  texto = 'Contanos qué problema tenés y coordinamos una visita. Presupuesto sin compromiso.',
+} = Astro.props;
+---
+
+<section class="seccion cta-final">
+  <div class="contenedor centro">
+    <h2>{titulo}</h2>
+    <p class="intro cta-final__texto">{texto}</p>
+    <div class="cta-final__botones">
+      <a href="https://wa.me/59800000000" class="boton boton--primario" rel="noopener">
+        Escribir por WhatsApp
+      </a>
+      <a href="/contacto/" class="boton boton--fantasma">Ver formas de contacto</a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .cta-final {
+    background: linear-gradient(160deg, var(--tinta) 0%, var(--azul) 100%);
+    color: var(--blanco);
+  }
+  .cta-final h2 { color: var(--blanco); }
+  .cta-final__texto {
+    color: #cfe0ec;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 2rem;
+  }
+  .cta-final__botones {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+</style>

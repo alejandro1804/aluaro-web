@@ -1,0 +1,146 @@
+/* ============================================================
+   Aluaro — Estilos globales
+   Paleta "agua bajo presión": azules profundos, acento agua.
+   ============================================================ */
+
+:root {
+  /* Color */
+  --tinta: #0a2540;      /* azul tinta profundo (fondos oscuros, texto fuerte) */
+  --azul: #12557e;       /* azul medio (superficies, botones) */
+  --agua: #3b9ac4;       /* acento agua (uso moderado) */
+  --agua-claro: #d6ebf3; /* agua muy claro (fondos suaves) */
+  --claro: #f5f8fa;      /* fondo claro general */
+  --texto: #0f1e2e;      /* texto principal */
+  --gris: #5a6b7a;       /* texto secundario */
+  --linea: #dde5eb;      /* bordes / divisores */
+  --blanco: #ffffff;
+
+  /* Tipografía */
+  --fuente-titulo: 'Space Grotesk', system-ui, sans-serif;
+  --fuente-cuerpo: 'Inter', system-ui, -apple-system, sans-serif;
+
+  /* Layout */
+  --ancho-max: 1120px;
+  --radio: 6px;
+  --sombra: 0 2px 16px rgba(10, 37, 64, 0.08);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+body {
+  margin: 0;
+  font-family: var(--fuente-cuerpo);
+  color: var(--texto);
+  background: var(--blanco);
+  line-height: 1.6;
+  font-size: 17px;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3 {
+  font-family: var(--fuente-titulo);
+  line-height: 1.15;
+  color: var(--tinta);
+  margin: 0 0 0.4em;
+  font-weight: 600;
+}
+
+h1 { font-size: clamp(2.1rem, 5vw, 3.3rem); letter-spacing: -0.02em; }
+h2 { font-size: clamp(1.6rem, 3.5vw, 2.3rem); letter-spacing: -0.01em; }
+h3 { font-size: 1.2rem; }
+
+p { margin: 0 0 1rem; max-width: 68ch; }
+
+a { color: var(--azul); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+img { max-width: 100%; height: auto; display: block; }
+
+/* --- Contenedor --- */
+.contenedor {
+  width: 100%;
+  max-width: var(--ancho-max);
+  margin: 0 auto;
+  padding: 0 1.25rem;
+}
+
+/* --- Secciones --- */
+.seccion {
+  padding: 4.5rem 0;
+}
+.seccion--claro { background: var(--claro); }
+.seccion--tinta { background: var(--tinta); color: #cfe0ec; }
+.seccion--tinta h2,
+.seccion--tinta h3 { color: var(--blanco); }
+
+/* --- Botones --- */
+.boton {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--fuente-cuerpo);
+  font-weight: 600;
+  font-size: 1rem;
+  padding: 0.8rem 1.5rem;
+  border-radius: var(--radio);
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+  text-decoration: none;
+}
+.boton:hover { text-decoration: none; }
+
+.boton--primario {
+  background: var(--agua);
+  color: var(--tinta);
+}
+.boton--primario:hover { background: #55add4; }
+
+.boton--fantasma {
+  background: transparent;
+  color: var(--blanco);
+  border-color: rgba(255, 255, 255, 0.4);
+}
+.boton--fantasma:hover { border-color: var(--blanco); }
+
+.boton--solido {
+  background: var(--azul);
+  color: var(--blanco);
+}
+.boton--solido:hover { background: #16649a; }
+
+/* --- Accesibilidad: foco visible --- */
+a:focus-visible,
+.boton:focus-visible,
+button:focus-visible {
+  outline: 3px solid var(--agua);
+  outline-offset: 2px;
+}
+
+/* --- Utilidades --- */
+.centro { text-align: center; }
+.intro {
+  font-size: 1.15rem;
+  color: var(--gris);
+  max-width: 60ch;
+}
+.seccion--tinta .intro { color: #aac6da; }
+
+.encabezado-seccion {
+  margin-bottom: 2.5rem;
+}
+.encabezado-seccion.centro { margin-left: auto; margin-right: auto; }

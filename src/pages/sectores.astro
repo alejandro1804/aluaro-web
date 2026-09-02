@@ -1,0 +1,157 @@
+---
+import Base from '../layouts/Base.astro';
+import LlamadaAccion from '../components/LlamadaAccion.astro';
+
+const sectores = [
+  {
+    num: '01',
+    titulo: 'Edificios y condominios',
+    desc: 'Trabajamos con administraciones y consorcios en el mantenimiento de instalaciones hidráulicas comunes. Entendemos la dinámica de un edificio: coordinación de accesos, aviso a vecinos y trabajo prolijo en áreas compartidas.',
+    puntos: [
+      'Mantenimiento de columnas y bajadas',
+      'Destapaciones en instalaciones comunes',
+      'Coordinación con administraciones',
+      'Planes preventivos para reducir urgencias',
+    ],
+  },
+  {
+    num: '02',
+    titulo: 'Comercios y empresas',
+    desc: 'Un problema hidráulico en un local puede frenar la actividad. Priorizamos la respuesta rápida y, cuando es posible, el trabajo en horarios que no interrumpan la operación. Ofrecemos planes de mantenimiento a medida.',
+    puntos: [
+      'Respuesta ágil ante urgencias',
+      'Trabajo en horarios coordinados',
+      'Planes de mantenimiento periódico',
+      'Instalaciones para locales y oficinas',
+    ],
+  },
+  {
+    num: '03',
+    titulo: 'Residencial',
+    desc: 'Para casas y apartamentos resolvemos desde la urgencia de un domingo hasta la reforma de un baño. Trato directo, presupuesto claro y trabajo garantizado, con el cuidado que merece tu hogar.',
+    puntos: [
+      'Destapaciones y pérdidas',
+      'Reformas de baños y cocinas',
+      'Recambio de griferías y sanitarios',
+      'Asesoramiento antes de reformar',
+    ],
+  },
+];
+---
+
+<Base
+  titulo="Sectores"
+  descripcion="Aluaro trabaja con edificios y condominios, comercios y empresas, y clientes residenciales en Uruguay, adaptando el servicio a cada tipo de instalación."
+>
+  <section class="cabecera-pagina">
+    <div class="contenedor">
+      <p class="cabecera-pagina__kicker">Sectores</p>
+      <h1>Cada instalación tiene sus exigencias</h1>
+      <p class="cabecera-pagina__bajada">
+        Adaptamos la forma de trabajar según se trate de un edificio, un comercio
+        o un hogar. Estos son los sectores que atendemos.
+      </p>
+    </div>
+  </section>
+
+  <section class="seccion">
+    <div class="contenedor">
+      <div class="sectores-lista">
+        {
+          sectores.map((s) => (
+            <article class="sector-det">
+              <div class="sector-det__num">{s.num}</div>
+              <div class="sector-det__cuerpo">
+                <h2>{s.titulo}</h2>
+                <p>{s.desc}</p>
+                <ul>
+                  {s.puntos.map((p) => <li>{p}</li>)}
+                </ul>
+              </div>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <LlamadaAccion />
+</Base>
+
+<style>
+  .cabecera-pagina {
+    background: linear-gradient(155deg, var(--tinta) 0%, var(--azul) 100%);
+    color: var(--blanco);
+    padding: 3.5rem 0 3rem;
+  }
+  .cabecera-pagina__kicker {
+    color: var(--agua);
+    font-weight: 600;
+    font-size: 0.9rem;
+    margin-bottom: 0.75rem;
+  }
+  .cabecera-pagina h1 { color: var(--blanco); max-width: 20ch; }
+  .cabecera-pagina__bajada {
+    color: #cfe0ec;
+    font-size: 1.1rem;
+    max-width: 56ch;
+    margin-top: 1rem;
+  }
+
+  .sectores-lista {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+  .sector-det {
+    display: grid;
+    grid-template-columns: 120px 1fr;
+    gap: 1.5rem;
+    align-items: start;
+    border-bottom: 1px solid var(--linea);
+    padding-bottom: 2rem;
+  }
+  .sector-det:last-child { border-bottom: none; padding-bottom: 0; }
+  .sector-det__num {
+    font-family: var(--fuente-titulo);
+    font-weight: 700;
+    font-size: 3rem;
+    color: var(--agua-claro);
+    line-height: 1;
+  }
+  .sector-det__cuerpo h2 {
+    color: var(--azul);
+    font-size: 1.5rem;
+  }
+  .sector-det__cuerpo p { color: var(--gris); }
+  .sector-det__cuerpo ul {
+    list-style: none;
+    padding: 0;
+    margin: 1rem 0 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.5rem 1.5rem;
+  }
+  .sector-det__cuerpo li {
+    position: relative;
+    padding-left: 1.4rem;
+    font-size: 0.95rem;
+  }
+  .sector-det__cuerpo li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.5em;
+    width: 8px;
+    height: 8px;
+    background: var(--agua);
+    border-radius: 2px;
+    transform: rotate(45deg);
+  }
+
+  @media (max-width: 700px) {
+    .sector-det { grid-template-columns: 1fr; gap: 0.5rem; }
+    .sector-det__num { font-size: 2.2rem; }
+    .sector-det__cuerpo ul { grid-template-columns: 1fr; }
+  }
+</style>

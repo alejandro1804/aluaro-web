@@ -1,0 +1,191 @@
+---
+import Base from '../layouts/Base.astro';
+import LlamadaAccion from '../components/LlamadaAccion.astro';
+
+const valores = [
+  {
+    titulo: 'Puntualidad',
+    desc: 'Respetamos el horario acordado. Tu tiempo vale, y una urgencia con agua no espera.',
+  },
+  {
+    titulo: 'Honestidad',
+    desc: 'Te decimos lo que realmente hay que hacer, sin inflar el trabajo ni el presupuesto.',
+  },
+  {
+    titulo: 'Prolijidad',
+    desc: 'Dejamos el lugar como lo encontramos. El trabajo bien hecho también se nota en el orden.',
+  },
+  {
+    titulo: 'Garantía',
+    desc: 'Respondemos por lo que hacemos. Cada intervención queda respaldada.',
+  },
+];
+
+const pasos = [
+  { n: '1', t: 'Nos contactás', d: 'Por WhatsApp, teléfono o el formulario. Contanos qué está pasando.' },
+  { n: '2', t: 'Coordinamos la visita', d: 'Acordamos día y horario. En urgencias, lo antes posible.' },
+  { n: '3', t: 'Diagnóstico y presupuesto', d: 'Revisamos, explicamos el problema y pasamos el presupuesto.' },
+  { n: '4', t: 'Resolvemos', d: 'Ejecutamos el trabajo acordado, prolijo y con garantía.' },
+];
+---
+
+<Base
+  titulo="Nosotros"
+  descripcion="Conocé Aluaro: un servicio de mantenimiento hidráulico y sanitario en Uruguay basado en puntualidad, honestidad y trabajo garantizado."
+>
+  <section class="cabecera-pagina">
+    <div class="contenedor">
+      <p class="cabecera-pagina__kicker">Nosotros</p>
+      <h1>Oficio, respuesta y palabra</h1>
+      <p class="cabecera-pagina__bajada">
+        Somos un servicio de sanitaria y mantenimiento hidráulico que trabaja
+        con una idea simple: resolver bien, a tiempo y con trato honesto.
+      </p>
+    </div>
+  </section>
+
+  <!-- Historia / presentación -->
+  <section class="seccion">
+    <div class="contenedor bloque-texto">
+      <h2>Quiénes somos</h2>
+      <p>
+        Aluaro nace del oficio de trabajar con agua todos los días: cañerías,
+        pérdidas, destapaciones e instalaciones en edificios, comercios y hogares
+        de Uruguay. Con el tiempo aprendimos que un buen servicio no se trata solo
+        de saber arreglar, sino de aparecer cuando hace falta y explicar con
+        claridad qué se va a hacer.
+      </p>
+      <p>
+        Por eso trabajamos con presupuesto claro antes de empezar, cumplimos los
+        horarios y dejamos cada trabajo respaldado. Ya sea una urgencia de
+        madrugada o el mantenimiento programado de un edificio, la forma de
+        trabajar es la misma: seria, prolija y de frente.
+      </p>
+    </div>
+  </section>
+
+  <!-- Valores -->
+  <section class="seccion seccion--claro">
+    <div class="contenedor">
+      <div class="encabezado-seccion centro">
+        <h2>Cómo trabajamos</h2>
+        <p class="intro" style="margin: 0 auto;">
+          Cuatro principios que guían cada visita.
+        </p>
+      </div>
+      <div class="grilla-valores">
+        {
+          valores.map((v) => (
+            <div class="valor">
+              <h3>{v.titulo}</h3>
+              <p>{v.desc}</p>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- Proceso -->
+  <section class="seccion">
+    <div class="contenedor">
+      <div class="encabezado-seccion">
+        <h2>El proceso, paso a paso</h2>
+        <p class="intro">Del primer mensaje a la solución, sin vueltas.</p>
+      </div>
+      <ol class="proceso">
+        {
+          pasos.map((p) => (
+            <li class="paso">
+              <span class="paso__n">{p.n}</span>
+              <div>
+                <h3>{p.t}</h3>
+                <p>{p.d}</p>
+              </div>
+            </li>
+          ))
+        }
+      </ol>
+    </div>
+  </section>
+
+  <LlamadaAccion />
+</Base>
+
+<style>
+  .cabecera-pagina {
+    background: linear-gradient(155deg, var(--tinta) 0%, var(--azul) 100%);
+    color: var(--blanco);
+    padding: 3.5rem 0 3rem;
+  }
+  .cabecera-pagina__kicker {
+    color: var(--agua);
+    font-weight: 600;
+    font-size: 0.9rem;
+    margin-bottom: 0.75rem;
+  }
+  .cabecera-pagina h1 { color: var(--blanco); }
+  .cabecera-pagina__bajada {
+    color: #cfe0ec;
+    font-size: 1.1rem;
+    max-width: 56ch;
+    margin-top: 1rem;
+  }
+
+  .bloque-texto { max-width: 760px; }
+  .bloque-texto p { font-size: 1.05rem; }
+
+  .grilla-valores {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+  }
+  .valor {
+    background: var(--blanco);
+    border: 1px solid var(--linea);
+    border-radius: var(--radio);
+    padding: 1.5rem;
+  }
+  .valor h3 { color: var(--azul); }
+  .valor p { color: var(--gris); font-size: 0.95rem; margin: 0; }
+
+  .proceso {
+    list-style: none;
+    counter-reset: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+  .paso {
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+    border: 1px solid var(--linea);
+    border-radius: var(--radio);
+    padding: 1.5rem;
+  }
+  .paso__n {
+    flex: none;
+    width: 40px;
+    height: 40px;
+    display: grid;
+    place-items: center;
+    background: var(--tinta);
+    color: var(--blanco);
+    font-family: var(--fuente-titulo);
+    font-weight: 700;
+    border-radius: 50%;
+  }
+  .paso h3 { margin-bottom: 0.25rem; }
+  .paso p { color: var(--gris); font-size: 0.95rem; margin: 0; }
+
+  @media (max-width: 860px) {
+    .grilla-valores { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 640px) {
+    .grilla-valores { grid-template-columns: 1fr; }
+    .proceso { grid-template-columns: 1fr; }
+  }
+</style>

@@ -1,0 +1,188 @@
+---
+const rutaActual = Astro.url.pathname;
+
+const enlaces = [
+  { texto: 'Inicio', href: '/' },
+  { texto: 'Servicios', href: '/servicios/' },
+  { texto: 'Sectores', href: '/sectores/' },
+  { texto: 'Nosotros', href: '/nosotros/' },
+  { texto: 'Contacto', href: '/contacto/' },
+];
+
+// Marca activo tanto la home como las subrutas.
+function esActivo(href: string) {
+  if (href === '/') return rutaActual === '/';
+  return rutaActual.startsWith(href);
+}
+---
+
+<header class="cab">
+  <div class="contenedor cab__interior">
+    <a href="/" class="cab__marca" aria-label="Aluaro — inicio">
+      <span class="cab__logo">Aluaro</span>
+      <span class="cab__tagline">Mantenimiento hidráulico</span>
+    </a>
+
+    <button
+      class="cab__hamburguesa"
+      aria-label="Abrir menú"
+      aria-expanded="false"
+      aria-controls="menu-principal"
+    >
+      <span></span><span></span><span></span>
+    </button>
+
+    <nav id="menu-principal" class="cab__nav" aria-label="Navegación principal">
+      <ul>
+        {
+          enlaces.map((e) => (
+            <li>
+              <a
+                href={e.href}
+                class:list={['cab__enlace', { 'cab__enlace--activo': esActivo(e.href) }]}
+                aria-current={esActivo(e.href) ? 'page' : undefined}
+              >
+                {e.texto}
+              </a>
+            </li>
+          ))
+        }
+        <li class="cab__cta-item">
+          <a href="/contacto/" class="boton boton--primario cab__cta">Pedir presupuesto</a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<style>
+  .cab {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: rgba(255, 255, 255, 0.96);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--linea);
+  }
+  .cab__interior {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 72px;
+  }
+  .cab__marca {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.1;
+    text-decoration: none;
+  }
+  .cab__logo {
+    font-family: var(--fuente-titulo);
+    font-weight: 700;
+    font-size: 1.5rem;
+    color: var(--tinta);
+    letter-spacing: -0.01em;
+  }
+  .cab__tagline {
+    font-size: 0.72rem;
+    color: var(--gris);
+    letter-spacing: 0.02em;
+  }
+
+  .cab__nav ul {
+    display: flex;
+    align-items: center;
+    gap: 1.75rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .cab__enlace {
+    color: var(--texto);
+    font-weight: 500;
+    font-size: 0.98rem;
+    padding: 0.4rem 0;
+    position: relative;
+    text-decoration: none;
+  }
+  .cab__enlace:hover { color: var(--azul); }
+  .cab__enlace--activo { color: var(--azul); }
+  .cab__enlace--activo::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -2px;
+    width: 100%;
+    height: 2px;
+    background: var(--agua);
+  }
+  .cab__cta { padding: 0.55rem 1.1rem; }
+
+  .cab__hamburguesa {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
+  }
+  .cab__hamburguesa span {
+    width: 26px;
+    height: 2px;
+    background: var(--tinta);
+    transition: transform 0.2s ease, opacity 0.2s ease;
+  }
+
+  /* --- Móvil --- */
+  @media (max-width: 860px) {
+    .cab__hamburguesa { display: flex; }
+    .cab__nav {
+      position: fixed;
+      inset: 72px 0 auto 0;
+      background: var(--blanco);
+      border-bottom: 1px solid var(--linea);
+      transform: translateY(-120%);
+      transition: transform 0.25s ease;
+      box-shadow: var(--sombra);
+    }
+    .cab__nav.abierto { transform: translateY(0); }
+    .cab__nav ul {
+      flex-direction: column;
+      align-items: stretch;
+      gap: 0;
+      padding: 0.5rem 1.25rem 1.25rem;
+    }
+    .cab__nav li { border-bottom: 1px solid var(--linea); }
+    .cab__cta-item { border-bottom: none; padding-top: 1rem; }
+    .cab__enlace { display: block; padding: 0.9rem 0; }
+    .cab__cta { display: block; text-align: center; }
+
+    .cab__hamburguesa[aria-expanded='true'] span:nth-child(1) {
+      transform: translateY(7px) rotate(45deg);
+    }
+    .cab__hamburguesa[aria-expanded='true'] span:nth-child(2) { opacity: 0; }
+    .cab__hamburguesa[aria-expanded='true'] span:nth-child(3) {
+      transform: translateY(-7px) rotate(-45deg);
+    }
+  }
+</style>
+
+<script>
+  const btn = document.querySelector('.cab__hamburguesa');
+  const nav = document.querySelector('.cab__nav');
+
+  btn?.addEventListener('click', () => {
+    const abierto = nav?.classList.toggle('abierto');
+    btn.setAttribute('aria-expanded', String(!!abierto));
+    btn.setAttribute('aria-label', abierto ? 'Cerrar menú' : 'Abrir menú');
+  });
+
+  // Cierra el menú al navegar a un enlace (móvil).
+  nav?.querySelectorAll('a').forEach((a) => {
+    a.addEventListener('click', () => {
+      nav.classList.remove('abierto');
+      btn?.setAttribute('aria-expanded', 'false');
+    });
+  });
+</script>

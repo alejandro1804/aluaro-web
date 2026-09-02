@@ -1,0 +1,210 @@
+---
+import Base from '../layouts/Base.astro';
+---
+
+<Base
+  titulo="Contacto"
+  descripcion="Contactá a Aluaro para presupuestos y urgencias hidráulicas en Uruguay. WhatsApp, teléfono, email y formulario."
+>
+  <section class="cabecera-pagina">
+    <div class="contenedor">
+      <p class="cabecera-pagina__kicker">Contacto</p>
+      <h1>Hablemos de tu problema hidráulico</h1>
+      <p class="cabecera-pagina__bajada">
+        Escribinos por el medio que prefieras. Para urgencias, WhatsApp o
+        teléfono es lo más rápido.
+      </p>
+    </div>
+  </section>
+
+  <section class="seccion">
+    <div class="contenedor contacto">
+      <!-- Columna de datos -->
+      <div class="contacto__datos">
+        <h2>Datos de contacto</h2>
+
+        <ul class="datos-lista">
+          <li>
+            <span class="datos-lista__etq">WhatsApp</span>
+            <a href="https://wa.me/59800000000" rel="noopener" class="datos-lista__val">
+              +598 0000 0000
+            </a>
+          </li>
+          <li>
+            <span class="datos-lista__etq">Teléfono</span>
+            <a href="tel:+59800000000" class="datos-lista__val">+598 0000 0000</a>
+          </li>
+          <li>
+            <span class="datos-lista__etq">Email</span>
+            <a href="mailto:aluaro.servicios@gmail.com" class="datos-lista__val">
+              aluaro.servicios@gmail.com
+            </a>
+          </li>
+          <li>
+            <span class="datos-lista__etq">Zona de cobertura</span>
+            <span class="datos-lista__val">Montevideo y área metropolitana</span>
+          </li>
+          <li>
+            <span class="datos-lista__etq">Horario</span>
+            <span class="datos-lista__val">Lun a Sáb · Urgencias 24 h</span>
+          </li>
+        </ul>
+
+        <a href="https://wa.me/59800000000" class="boton boton--primario" rel="noopener">
+          Escribir por WhatsApp
+        </a>
+      </div>
+
+      <!-- Columna de formulario -->
+      <div class="contacto__form">
+        <h2>Envianos un mensaje</h2>
+        <p class="contacto__nota">
+          Completá el formulario y te respondemos a la brevedad.
+        </p>
+
+        <!--
+          NOTA: GitHub Pages es estático y no procesa formularios por sí solo.
+          Para que este formulario envíe emails, creá una cuenta gratuita en
+          Formspree (https://formspree.io), generá un endpoint y reemplazá
+          TU_ID_FORMSPREE abajo. Alternativa: Web3Forms o similar.
+          Mientras tanto, el botón de WhatsApp funciona sin backend.
+        -->
+        <form action="https://formspree.io/f/TU_ID_FORMSPREE" method="POST" class="formulario">
+          <div class="campo">
+            <label for="nombre">Nombre</label>
+            <input type="text" id="nombre" name="nombre" required autocomplete="name" />
+          </div>
+
+          <div class="campo-fila">
+            <div class="campo">
+              <label for="telefono">Teléfono</label>
+              <input type="tel" id="telefono" name="telefono" autocomplete="tel" />
+            </div>
+            <div class="campo">
+              <label for="email">Email</label>
+              <input type="email" id="email" name="email" autocomplete="email" />
+            </div>
+          </div>
+
+          <div class="campo">
+            <label for="asunto">Asunto</label>
+            <select id="asunto" name="asunto">
+              <option value="Presupuesto">Pedir presupuesto</option>
+              <option value="Urgencia">Urgencia</option>
+              <option value="Mantenimiento">Mantenimiento / edificio</option>
+              <option value="Consulta">Consulta general</option>
+            </select>
+          </div>
+
+          <div class="campo">
+            <label for="mensaje">Mensaje</label>
+            <textarea id="mensaje" name="mensaje" rows="5" required></textarea>
+          </div>
+
+          <button type="submit" class="boton boton--solido">Enviar mensaje</button>
+        </form>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .cabecera-pagina {
+    background: linear-gradient(155deg, var(--tinta) 0%, var(--azul) 100%);
+    color: var(--blanco);
+    padding: 3.5rem 0 3rem;
+  }
+  .cabecera-pagina__kicker {
+    color: var(--agua);
+    font-weight: 600;
+    font-size: 0.9rem;
+    margin-bottom: 0.75rem;
+  }
+  .cabecera-pagina h1 { color: var(--blanco); }
+  .cabecera-pagina__bajada {
+    color: #cfe0ec;
+    font-size: 1.1rem;
+    max-width: 56ch;
+    margin-top: 1rem;
+  }
+
+  .contacto {
+    display: grid;
+    grid-template-columns: 0.9fr 1.1fr;
+    gap: 3rem;
+    align-items: start;
+  }
+
+  /* Datos */
+  .datos-lista {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.1rem;
+  }
+  .datos-lista li {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+    padding-bottom: 1.1rem;
+    border-bottom: 1px solid var(--linea);
+  }
+  .datos-lista__etq {
+    font-size: 0.8rem;
+    color: var(--gris);
+  }
+  .datos-lista__val {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--tinta);
+  }
+  a.datos-lista__val:hover { color: var(--azul); }
+
+  /* Formulario */
+  .contacto__nota { color: var(--gris); margin-bottom: 1.5rem; }
+  .formulario {
+    display: flex;
+    flex-direction: column;
+    gap: 1.1rem;
+  }
+  .campo { display: flex; flex-direction: column; gap: 0.35rem; }
+  .campo-fila {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.1rem;
+  }
+  .campo label {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--texto);
+  }
+  .campo input,
+  .campo select,
+  .campo textarea {
+    font-family: var(--fuente-cuerpo);
+    font-size: 1rem;
+    padding: 0.7rem 0.85rem;
+    border: 1px solid var(--linea);
+    border-radius: var(--radio);
+    background: var(--blanco);
+    color: var(--texto);
+    width: 100%;
+  }
+  .campo input:focus,
+  .campo select:focus,
+  .campo textarea:focus {
+    outline: none;
+    border-color: var(--agua);
+    box-shadow: 0 0 0 3px rgba(59, 154, 196, 0.18);
+  }
+  .campo textarea { resize: vertical; }
+
+  @media (max-width: 820px) {
+    .contacto { grid-template-columns: 1fr; gap: 2.5rem; }
+  }
+  @media (max-width: 460px) {
+    .campo-fila { grid-template-columns: 1fr; }
+  }
+</style>
