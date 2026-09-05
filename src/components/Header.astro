@@ -19,8 +19,18 @@ function esActivo(href: string) {
 <header class="cab">
   <div class="contenedor cab__interior">
     <a href="/" class="cab__marca" aria-label="Aluaro — inicio">
-      <span class="cab__logo">Aluaro</span>
-      <span class="cab__tagline">Mantenimiento hidráulico</span>
+      <img
+        src="/logo-header.png"
+        alt=""
+        class="cab__logo-img"
+        width="48"
+        height="48"
+        aria-hidden="true"
+      />
+      <span class="cab__marca-texto">
+        <span class="cab__logo">Aluaro</span>
+        <span class="cab__tagline">Mantenimiento hidráulico</span>
+      </span>
     </a>
 
     <button
@@ -72,21 +82,36 @@ function esActivo(href: string) {
   }
   .cab__marca {
     display: flex;
-    flex-direction: column;
+    align-items: center;
+    gap: 0.7rem;
     line-height: 1.1;
     text-decoration: none;
+  }
+  .cab__marca:hover { text-decoration: none; }
+  .cab__logo-img {
+    width: 48px;
+    height: 48px;
+    flex: none;
+    border-radius: 50%;
+    box-shadow: 0 2px 8px rgba(10, 37, 64, 0.25);
+  }
+  .cab__marca-texto {
+    display: flex;
+    flex-direction: column;
   }
   .cab__logo {
     font-family: var(--fuente-titulo);
     font-weight: 700;
-    font-size: 1.5rem;
+    font-size: 1.6rem;
     color: var(--tinta);
-    letter-spacing: -0.01em;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
   }
   .cab__tagline {
     font-size: 0.72rem;
     color: var(--gris);
-    letter-spacing: 0.02em;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
   }
 
   .cab__nav ul {
