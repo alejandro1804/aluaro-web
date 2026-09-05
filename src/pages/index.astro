@@ -4,27 +4,19 @@ import LlamadaAccion from '../components/LlamadaAccion.astro';
 
 const servicios = [
   {
-    titulo: 'Destapaciones',
-    desc: 'Desobstrucción de cañerías, desagües y bajadas con equipo especializado.',
-  },
-  {
-    titulo: 'Reparación de pérdidas',
-    desc: 'Detección y arreglo de filtraciones y roturas en instalaciones de agua.',
-  },
-  {
-    titulo: 'Instalaciones sanitarias',
-    desc: 'Cañerías, griferías, sanitarios y reformas de baños y cocinas.',
-  },
-  {
     titulo: 'Mantenimiento preventivo',
-    desc: 'Planes periódicos para edificios y comercios que evitan urgencias.',
+    desc: 'Planes periódicos para edificios y comercios que anticipan problemas antes de que crezcan.',
+  },
+  {
+    titulo: 'Asesoramiento',
+    desc: 'Diagnóstico del estado de tu instalación y las mejores opciones antes de una reforma o recambio.',
   },
 ];
 
 const diferenciales = [
   {
     titulo: 'Respuesta rápida',
-    desc: 'Coordinamos la visita a la brevedad, especialmente en urgencias con agua.',
+    desc: 'Coordinamos la visita a la brevedad para resolver lo que necesitás.',
   },
   {
     titulo: 'Trabajo garantizado',
@@ -39,7 +31,7 @@ const diferenciales = [
 
 <Base
   titulo="Inicio"
-  descripcion="Aluaro: mantenimiento hidráulico y sanitario en Uruguay. Destapaciones, reparación de pérdidas e instalaciones para edificios, comercios y hogares."
+  descripcion="Aluaro: mantenimiento hidráulico y asesoramiento en Uruguay, para edificios, comercios y hogares."
 >
   <!-- HERO -->
   <section class="hero">
@@ -48,9 +40,9 @@ const diferenciales = [
         <p class="hero__kicker">Mantenimiento hidráulico · Uruguay</p>
         <h1>Cuando el agua es el problema, nosotros somos la solución.</h1>
         <p class="hero__bajada">
-          Servicio de mantenimiento hidráulico para edificios,
-          comercios y hogares. Instalaciones y planes
-          preventivos, con respuesta rápida en Montevideo y área metropolitana.
+          Servicio de mantenimiento hidráulico y asesoramiento para edificios,
+          comercios y hogares. Planes preventivos y soluciones a medida, con
+          respuesta rápida en Montevideo y área metropolitana.
         </p>
         <div class="hero__acciones">
           <a href="https://wa.me/59899538006" class="boton boton--primario" rel="noopener">
@@ -85,8 +77,8 @@ const diferenciales = [
       <div class="encabezado-seccion">
         <h2>Lo que resolvemos</h2>
         <p class="intro">
-          Cubrimos las necesidades hidráulicas más frecuentes, desde una urgencia
-          puntual hasta el mantenimiento continuo de un edificio.
+          Acompañamos el cuidado de tu instalación, desde el mantenimiento
+          continuo de un edificio hasta el asesoramiento para una reforma.
         </p>
       </div>
 
@@ -126,11 +118,6 @@ const diferenciales = [
           <span class="sector__num">02</span>
           <h3>Comercios y empresas</h3>
           <p>Respuesta ágil para no interrumpir la actividad, con planes preventivos.</p>
-        </a>
-        <a href="/sectores/" class="sector">
-          <span class="sector__num">03</span>
-          <h3>Residencial</h3>
-          <p>Soluciones para casas y apartamentos, de la urgencia a la reforma.</p>
         </a>
       </div>
     </div>
@@ -203,7 +190,7 @@ const diferenciales = [
   /* SERVICIOS */
   .grilla-servicios {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(2, 1fr);
     gap: 1.25rem;
   }
   .tarjeta-servicio {
@@ -229,7 +216,7 @@ const diferenciales = [
   /* SECTORES */
   .grilla-sectores {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr);
     gap: 1.5rem;
   }
   .sector {
