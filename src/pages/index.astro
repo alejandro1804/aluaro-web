@@ -53,20 +53,13 @@ const diferenciales = [
       </div>
 
       <div class="hero__panel" aria-hidden="true">
-        <div class="hero__gota">
-          <svg viewBox="0 0 120 160" xmlns="http://www.w3.org/2000/svg" role="img">
-            <path
-              d="M60 8C60 8 16 66 16 104a44 44 0 0 0 88 0C104 66 60 8 60 8Z"
-              fill="none"
-              stroke="rgba(255,255,255,0.55)"
-              stroke-width="2.5"
-            />
-            <path
-              d="M60 40C60 40 34 78 34 104a26 26 0 0 0 52 0C86 78 60 40 60 40Z"
-              fill="rgba(59,154,196,0.35)"
-            />
-          </svg>
-        </div>
+        <img
+          src="/logo-hero.png"
+          alt="Logo de Aluaro"
+          class="hero__logo"
+          width="512"
+          height="512"
+        />
       </div>
     </div>
   </section>
@@ -182,9 +175,11 @@ const diferenciales = [
     justify-content: center;
     align-items: center;
   }
-  .hero__gota {
-    width: 190px;
-    max-width: 60%;
+  .hero__logo {
+          width: 320px;
+          max-width: 80%;
+          height: auto;
+          filter: drop-shadow(0 10px 30px rgba(0,0,0,0.35));
   }
 
   /* SERVICIOS */
