@@ -14,6 +14,42 @@ const {
 } = Astro.props;
 
 const tituloCompleto = `${titulo} · Aluaro`;
+
+// URL canónica de la página actual (evita contenido duplicado)
+const canonical = new URL(Astro.url.pathname, Astro.site).href;
+
+// Imagen para compartir en redes (Open Graph).
+// Cuando tengas una imagen real, ponela en /public/og-image.jpg (1200x630px)
+const ogImage = new URL('/og-image.jpg', Astro.site).href;
+
+// Datos estructurados de negocio local (JSON-LD) para Google.
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Plumber',
+  name: 'Aluaro',
+  description:
+    'Mantenimiento hidráulico y sanitario, y asesoramiento para edificios, comercios y hogares en Uruguay.',
+  url: 'https://www.aluaro.com.uy',
+  telephone: '+59899538006',
+  email: 'aluaro.servicios@gmail.com',
+  areaServed: {
+    '@type': 'Place',
+    name: 'Montevideo y área metropolitana, Uruguay',
+  },
+  address: {
+    '@type': 'PostalAddress',
+    addressLocality: 'Montevideo',
+    addressCountry: 'UY',
+  },
+  openingHoursSpecification: {
+    '@type': 'OpeningHoursSpecification',
+    dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+    opens: '08:00',
+    closes: '17:00',
+  },
+  // Cuando Rodri pase las redes, se agregan acá dentro de "sameAs":
+  // sameAs: ['https://instagram.com/...', 'https://facebook.com/...'],
+};
 ---
 
 <!doctype html>
@@ -24,12 +60,26 @@ const tituloCompleto = `${titulo} · Aluaro`;
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <title>{tituloCompleto}</title>
     <meta name="description" content={descripcion} />
+    <link rel="canonical" href={canonical} />
 
-    <!-- Open Graph básico -->
+    <!-- Geo (SEO local) -->
+    <meta name="geo.region" content="UY-MO" />
+    <meta name="geo.placename" content="Montevideo" />
+
+    <!-- Open Graph (compartir en redes / WhatsApp) -->
     <meta property="og:title" content={tituloCompleto} />
     <meta property="og:description" content={descripcion} />
     <meta property="og:type" content="website" />
     <meta property="og:locale" content="es_UY" />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:site_name" content="Aluaro" />
+    <meta property="og:image" content={ogImage} />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={tituloCompleto} />
+    <meta name="twitter:description" content={descripcion} />
+    <meta name="twitter:image" content={ogImage} />
 
     <!-- Fuentes -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -38,6 +88,9 @@ const tituloCompleto = `${titulo} · Aluaro`;
       href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap"
       rel="stylesheet"
     />
+
+    <!-- Datos estructurados de negocio local -->
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
   </head>
   <body>
     <Header />
