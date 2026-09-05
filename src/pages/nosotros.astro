@@ -3,22 +3,10 @@ import Base from '../layouts/Base.astro';
 import LlamadaAccion from '../components/LlamadaAccion.astro';
 
 const valores = [
-  {
-    titulo: 'Puntualidad',
-    desc: 'Respetamos el horario acordado. Tu tiempo vale.',
-  },
-  {
-    titulo: 'Honestidad',
-    desc: 'Te decimos lo que realmente hay que hacer, sin inflar el trabajo ni el presupuesto.',
-  },
-  {
-    titulo: 'Prolijidad',
-    desc: 'Dejamos el lugar como lo encontramos. El trabajo bien hecho también se nota en el orden.',
-  },
-  {
-    titulo: 'Garantía',
-    desc: 'Respondemos por lo que hacemos. Cada intervención queda respaldada.',
-  },
+  { titulo: 'Puntualidad', desc: 'Respetamos el horario acordado. Tu tiempo vale.' },
+  { titulo: 'Honestidad', desc: 'Te decimos lo que realmente hay que hacer, sin inflar el trabajo ni el presupuesto.' },
+  { titulo: 'Prolijidad', desc: 'Dejamos el lugar como lo encontramos. El trabajo bien hecho también se nota en el orden.' },
+  { titulo: 'Garantía', desc: 'Respondemos por lo que hacemos. Cada intervención queda respaldada.' },
 ];
 
 const pasos = [
@@ -44,21 +32,32 @@ const pasos = [
     </div>
   </section>
 
-  <!-- Historia / presentación -->
+  <!-- Quiénes somos + foto -->
   <section class="seccion">
-    <div class="contenedor bloque-texto">
-      <h2>Quiénes somos</h2>
-      <p>
-        Aluaro nace del oficio de trabajar con agua todos los días, en edificios,
-        comercios y hogares de Uruguay. Con el tiempo aprendimos que un buen
-        servicio no se trata solo de saber resolver, sino de aparecer cuando
-        hace falta y explicar con claridad qué se va a hacer.
-      </p>
-      <p>
-        Por eso trabajamos con presupuesto claro antes de empezar, cumplimos los
-        horarios y dejamos cada trabajo respaldado. La forma de trabajar es la
-        misma: seria, prolija y de frente.
-      </p>
+    <div class="contenedor quienes">
+      <div class="quienes__texto">
+        <h2>Quiénes somos</h2>
+        <p>
+          Aluaro nace del oficio de trabajar con agua todos los días, en
+          edificios, comercios y hogares de Uruguay. Con el tiempo aprendimos
+          que un buen servicio no se trata solo de saber resolver, sino de
+          aparecer cuando hace falta y explicar con claridad qué se va a hacer.
+        </p>
+        <p>
+          Por eso trabajamos con presupuesto claro antes de empezar, cumplimos
+          los horarios y dejamos cada trabajo respaldado. La forma de trabajar
+          es la misma: seria, prolija y de frente.
+        </p>
+      </div>
+      <figure class="quienes__figura">
+        <img
+          src="/imagenes/tecnico-trabajo.jpg"
+          alt="Técnico de Aluaro reparando un motor de bomba con herramientas"
+          loading="lazy"
+          width="1200"
+          height="800"
+        />
+      </figure>
     </div>
   </section>
 
@@ -67,19 +66,15 @@ const pasos = [
     <div class="contenedor">
       <div class="encabezado-seccion centro">
         <h2>Cómo trabajamos</h2>
-        <p class="intro" style="margin: 0 auto;">
-          Cuatro principios que guían cada visita.
-        </p>
+        <p class="intro" style="margin: 0 auto;">Cuatro principios que guían cada visita.</p>
       </div>
       <div class="grilla-valores">
-        {
-          valores.map((v) => (
-            <div class="valor">
-              <h3>{v.titulo}</h3>
-              <p>{v.desc}</p>
-            </div>
-          ))
-        }
+        {valores.map((v) => (
+          <div class="valor">
+            <h3>{v.titulo}</h3>
+            <p>{v.desc}</p>
+          </div>
+        ))}
       </div>
     </div>
   </section>
@@ -92,17 +87,15 @@ const pasos = [
         <p class="intro">Del primer mensaje a la solución, sin vueltas.</p>
       </div>
       <ol class="proceso">
-        {
-          pasos.map((p) => (
-            <li class="paso">
-              <span class="paso__n">{p.n}</span>
-              <div>
-                <h3>{p.t}</h3>
-                <p>{p.d}</p>
-              </div>
-            </li>
-          ))
-        }
+        {pasos.map((p) => (
+          <li class="paso">
+            <span class="paso__n">{p.n}</span>
+            <div>
+              <h3>{p.t}</h3>
+              <p>{p.d}</p>
+            </div>
+          </li>
+        ))}
       </ol>
     </div>
   </section>
@@ -130,8 +123,28 @@ const pasos = [
     margin-top: 1rem;
   }
 
-  .bloque-texto { max-width: 760px; }
-  .bloque-texto p { font-size: 1.05rem; }
+  /* Quiénes somos con foto */
+  .quienes {
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 3rem;
+    align-items: center;
+  }
+  .quienes__texto { max-width: 60ch; }
+  .quienes__texto p { font-size: 1.05rem; color: var(--gris); }
+  .quienes__texto h2 { color: var(--tinta); }
+  .quienes__figura {
+    margin: 0;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 12px 32px rgba(10, 37, 64, 0.18);
+  }
+  .quienes__figura img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
 
   .grilla-valores {
     display: grid;
@@ -149,7 +162,6 @@ const pasos = [
 
   .proceso {
     list-style: none;
-    counter-reset: none;
     padding: 0;
     margin: 0;
     display: grid;
@@ -181,6 +193,7 @@ const pasos = [
 
   @media (max-width: 860px) {
     .grilla-valores { grid-template-columns: repeat(2, 1fr); }
+    .quienes { grid-template-columns: 1fr; gap: 2rem; }
   }
   @media (max-width: 640px) {
     .grilla-valores { grid-template-columns: 1fr; }

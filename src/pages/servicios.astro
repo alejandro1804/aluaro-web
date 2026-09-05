@@ -20,9 +20,10 @@ const servicios = [
   titulo="Servicios"
   descripcion="Servicios de Aluaro: mantenimiento preventivo y asesoramiento hidráulico y sanitario para edificios, comercios y hogares en Uruguay."
 >
-  <!-- Encabezado de página -->
+  <!-- Encabezado de página con imagen de fondo -->
   <section class="cabecera-pagina">
-    <div class="contenedor">
+    <div class="cabecera-pagina__fondo" aria-hidden="true"></div>
+    <div class="contenedor cabecera-pagina__contenido">
       <p class="cabecera-pagina__kicker">Servicios</p>
       <h1>Todo lo que hacemos con el agua de tu instalación</h1>
       <p class="cabecera-pagina__bajada">
@@ -53,6 +54,35 @@ const servicios = [
     </div>
   </section>
 
+  <!-- Bloque: equipos e instalaciones (bombas en exhibición) -->
+  <section class="seccion seccion--claro">
+    <div class="contenedor equipos">
+      <div class="equipos__texto">
+        <h2>Trabajamos con equipos de todo tipo</h2>
+        <p>
+          Bombas de presión, sistemas de recirculación, colectores y salas de
+          máquinas. Conocemos los equipos que mantienen el agua funcionando en
+          un edificio y sabemos cómo cuidarlos para alargar su vida útil.
+        </p>
+        <ul class="equipos__lista">
+          <li>Bombas presurizadoras y de recirculación</li>
+          <li>Colectores y válvulas</li>
+          <li>Tableros y automatismos de bombeo</li>
+          <li>Salas de máquinas de edificios</li>
+        </ul>
+      </div>
+      <figure class="equipos__figura">
+        <img
+          src="/imagenes/bombas-exhibicion.jpg"
+          alt="Bombas presurizadoras de distintos modelos instaladas en una sala de máquinas"
+          loading="lazy"
+          width="1000"
+          height="1250"
+        />
+      </figure>
+    </div>
+  </section>
+
   <LlamadaAccion
     titulo="¿No ves lo que necesitás?"
     texto="Escribinos y te decimos si podemos ayudarte. La mayoría de los problemas hidráulicos entran dentro de lo que hacemos."
@@ -60,10 +90,28 @@ const servicios = [
 </Base>
 
 <style>
+  /* Cabecera con imagen de fondo */
   .cabecera-pagina {
-    background: linear-gradient(155deg, var(--tinta) 0%, var(--azul) 100%);
+    position: relative;
     color: var(--blanco);
-    padding: 3.5rem 0 3rem;
+    padding: 5rem 0 4rem;
+    overflow: hidden;
+    isolation: isolate;
+  }
+  .cabecera-pagina__fondo {
+    position: absolute;
+    inset: 0;
+    z-index: -2;
+    background-image: url('/imagenes/sala-maquinas.jpg');
+    background-size: cover;
+    background-position: center;
+  }
+  .cabecera-pagina::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: linear-gradient(150deg, rgba(10,37,64,0.92) 0%, rgba(18,85,126,0.82) 100%);
   }
   .cabecera-pagina__kicker {
     color: var(--agua);
@@ -73,7 +121,7 @@ const servicios = [
   }
   .cabecera-pagina h1 { color: var(--blanco); max-width: 20ch; }
   .cabecera-pagina__bajada {
-    color: #cfe0ec;
+    color: #dcecf5;
     font-size: 1.1rem;
     max-width: 56ch;
     margin-top: 1rem;
@@ -125,8 +173,57 @@ const servicios = [
     background: var(--agua);
   }
 
+  /* Bloque equipos */
+  .equipos {
+    display: grid;
+    grid-template-columns: 1fr 0.85fr;
+    gap: 3rem;
+    align-items: center;
+  }
+  .equipos__texto h2 { color: var(--tinta); }
+  .equipos__texto p { color: var(--gris); }
+  .equipos__lista {
+    list-style: none;
+    padding: 0;
+    margin: 1.25rem 0 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+  .equipos__lista li {
+    position: relative;
+    padding-left: 1.5rem;
+    color: var(--texto);
+    font-size: 0.98rem;
+  }
+  .equipos__lista li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.5em;
+    width: 8px;
+    height: 8px;
+    background: var(--agua);
+    border-radius: 2px;
+    transform: rotate(45deg);
+  }
+  .equipos__figura {
+    margin: 0;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 12px 32px rgba(10, 37, 64, 0.18);
+  }
+  .equipos__figura img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
   @media (max-width: 820px) {
     .lista-servicios { grid-template-columns: 1fr; }
+    .equipos { grid-template-columns: 1fr; gap: 2rem; }
+    .equipos__figura { max-height: 420px; }
   }
   @media (max-width: 460px) {
     .servicio-det__items { grid-template-columns: 1fr; }
